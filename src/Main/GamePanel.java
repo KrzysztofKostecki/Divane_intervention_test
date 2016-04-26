@@ -14,9 +14,11 @@ public class GamePanel extends JPanel
 	implements Runnable, KeyListener{
 	
 	// resolution
-	public static final int WIDTH = 960;
-	public static final int HEIGHT = 720;
-	public static final int SCALE = 1;
+    public static final double SCALE = 1.5;
+	public static final int WIDTH = (int)(960*SCALE);
+	public static final int HEIGHT = (int)(720*SCALE);
+    private Dimension screenSize;
+
 	
 	// game thread
 	private Thread thread;
@@ -34,9 +36,11 @@ public class GamePanel extends JPanel
 	public GamePanel() {
 		super();
 		setPreferredSize(
-			new Dimension(WIDTH, HEIGHT));
+			new Dimension(WIDTH, HEIGHT ));
 		setFocusable(true);
 		requestFocus();
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
 	}
 	
 	public void addNotify() {
@@ -51,7 +55,7 @@ public class GamePanel extends JPanel
 	private void init() {
 		
 		image = new BufferedImage(
-					WIDTH, HEIGHT,
+				WIDTH, HEIGHT,
 					BufferedImage.TYPE_INT_RGB
 				);
 		g = (Graphics2D) image.getGraphics();
@@ -103,8 +107,8 @@ public class GamePanel extends JPanel
 	}
 	private void drawToScreen() {
 		Graphics g2 = getGraphics();
-		g2.drawImage(image, 0, 0,
-				WIDTH * SCALE, HEIGHT * SCALE,
+		g2.drawImage(image, (int)(screenSize.getWidth())/2-WIDTH/2, (int)(screenSize.getHeight())/2 - HEIGHT/2,
+				WIDTH, HEIGHT,
 				null);
 		g2.dispose();
 	}
