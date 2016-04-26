@@ -26,8 +26,8 @@ public class Background {
 			image = ImageIO.read(
                     getClass().getResourceAsStream(s)
             );
-			Scaler sw = new Scaler(image,GamePanel.WIDTH,GamePanel.HEIGHT);
-			image = sw.getScalledImage();
+			//Scaler sw = new Scaler(image,GamePanel.WIDTH,GamePanel.HEIGHT);
+			//image = sw.getScalledImage();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -68,6 +68,7 @@ public class Background {
 				null
 			);
 		}
+		//g.fillRect(0,0,GamePanel.WIDTH,GamePanel.HEIGHT);
 	}
 
 
